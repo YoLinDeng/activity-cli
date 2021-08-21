@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>{{ title }}</title>
+    <link href="{{ css }}" rel="preload" as="style">
+    <link href="https://images.vrm.cn/assets/vue/2.6.10/vue.min.js" rel="preload" as="script">
+    <link href="{{ js }}" rel="preload" as="script">
+    <!-- build:css -->
+    <link rel="stylesheet" href="{{ css }}" />
+    <!-- endbuild -->
+    <script>
+      (function(window, document) {
+        function resize() {
+          var ww = window.innerWidth
+          if (ww > window.screen.width) {
+            window.requestAnimationFrame(resize)
+          } else {
+            if (ww > 750) {
+              ww = 750
+            }
+            document.documentElement.style.fontSize = ww * 100 / 750 + 'px'
+          }
+        }
+
+        resize();
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) {
+            resize();
+          }
+        });
+      })(window, document);
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <activity>
+        <img
+          style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; margin: auto; z-index: 99999;"
+          width="50"
+          height="50"
+          src="https://images.vrm.cn/2x/2021/05/21/loader.svg"
+          alt="loading"
+        />
+      </activity>
+    </div>
+    <script src="https://images.vrm.cn/assets/vue/2.6.10/vue.min.js"></script>
+    <!-- build:js -->
+    <script src="{{ js }}"></script>
+    <!-- endbuild -->
+    <!-- built files will be auto injected -->
+
+  <script>
+    new Vue({
+      components: {
+        activity: {{ template }}
+      }
+    }).$mount('#app')
+  </script>  
+  </body>
+</html>
