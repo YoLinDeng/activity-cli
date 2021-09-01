@@ -52,8 +52,7 @@ module.exports = {
     open: true,
     proxy: {
       '/': {
-        // target: 'https://m-test.htprudent.com', // 荷叶保测试线
-        target: 'https://testnins.ybj.com', // 百家保测试线
+        target: '',
         ws: true,
         changeOrigin: true,
         logLevel: 'debug'
